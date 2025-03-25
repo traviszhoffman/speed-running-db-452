@@ -46,11 +46,22 @@ function FloatingPaths({ position }: { position: number }) {
   )
 }
 
-export default function BackgroundPaths({
-  title = "CS452 SpeedRunDB Natural Language Chat",
-}: {
-  title?: string
-}) {
+// For page components in Next.js app router, we need to adhere to the expected page props
+// Moving the BackgroundPaths to a separate component
+
+// Page component should not accept custom props
+export default function Page() {
+  return <BackgroundPathsComponent title="CS452 SpeedRunDB Natural Language Chat" />;
+}
+
+// Move your original component to a separate component
+interface BackgroundPathsProps {
+  title: string;
+}
+
+function BackgroundPathsComponent({
+  title,
+}: BackgroundPathsProps) {
   const words = title.split(" ")
 
   return (
@@ -120,4 +131,3 @@ export default function BackgroundPaths({
     </div>
   )
 }
-
